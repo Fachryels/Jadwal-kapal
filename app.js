@@ -1,4 +1,4 @@
-const CSV_URL = 'https://raw.githubusercontent.com/Fachryels/Jadwal-kapal/refs/heads/main/Jadwal%20kapal.csv';
+const CSV_URL = 'https://raw.githubusercontent.com/Fachryels/Jadwal-kapal/refs/heads/main/Jadwal%20kapal%20rev.csv';
 const BANNER_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=31431312&single=true&output=csv';
 
 async function fetchData() {
