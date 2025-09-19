@@ -10,7 +10,26 @@
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
     th { background-color: #f2f2f2; }
     #clock { font-size: 1.2em; font-weight: bold; margin-bottom: 20px; }
- 
+    /* Banner style */
+    #banner {
+      position: fixed;
+      bottom: 0; 
+      left: 0;
+      width: 100%;
+      background: #004080;
+      color: white;
+      padding: 10px 0;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      display: block;
+      z-index: 9999;
+    }
+    #banner span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
     @keyframes scroll-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-100%); }
@@ -19,7 +38,7 @@
 </head>
 <body>
   <div id="clock"></div>
-  <div id="banner"><span>Selamat Datang di Sistem Jadwal Kapal</span></div>
+
   <h2>Jadwal Kapal di Jetty</h2>
   <table id="jadwal">
     <thead>
@@ -45,9 +64,9 @@
     <tbody></tbody>
   </table>
 
-  <script src="app.js"></script>
+  <!-- Banner pindah ke bawah -->
+  <div id="banner"><span>Selamat Datang di Sistem Jadwal Kapal</span></div>
 
-  <div id="banner" class="marquee"></div>
   <script src="app.js"></script>
 </body>
 </html>
