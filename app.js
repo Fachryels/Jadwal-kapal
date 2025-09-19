@@ -60,5 +60,5 @@ updateClock();
 
 fetchData();
 fetchBanner();
-setInterval(fetchData, 60000);
-setInterval(fetchBanner, 60000);
+setInterval(fetchData, 10000);
+setInterval(fetchBanner, 10000);
