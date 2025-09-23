@@ -1,7 +1,7 @@
 // konfigurasi URL CSV
 const JADWAL_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=0&single=true&output=csv';     // Jetty, Nama Kapal, ATA, ETD
-const INCOMING_URL = 'incoming.csv'; // Nama Kapal, ETA
-const ANCHORAGE_URL = 'anchorage.csv'; // Nama Kapal, ATA, ETB
+const INCOMING_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=785826341&single=true&output=csv'; // Nama Kapal, ETA
+const ANCHORAGE_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=949735173&single=true&output=csv'; // Nama Kapal, ATA, ETB
 const BANNER_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=31431312&single=true&output=csv';     // Teks banner
 
 // ubah teks CSV ke array
