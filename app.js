@@ -35,6 +35,7 @@ async function loadTable(url, tableSelector, colCount) {
   }
 }
 
+
 // load banner
 async function fetchBanner() {
   const bannerEl = document.getElementById('banner');
@@ -45,6 +46,7 @@ async function fetchBanner() {
     const rows = csvToRows(txt).slice(1);
     const texts = rows.map(r => (r[0]||'').trim()).filter(Boolean);
     const content = texts.join(' • ') || '— Tidak ada info banner —';
+    // isi #banner dengan <span> agar animasi scroll jalan
     bannerEl.innerHTML = `<span>${content}</span>`;
   } catch(e) {
     console.error(e);
