@@ -68,4 +68,4 @@ function loadAll(){
   fetchBanner();
 }
 loadAll();
-setInterval(loadAll,8000);
+setInterval(loadAll,20000);
