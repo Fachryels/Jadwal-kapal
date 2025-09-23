@@ -1,24 +1,47 @@
+/* Style dasar body */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
 }
+
+/* Judul Utama */
+h1 {
+  text-align: center;
+  color: #004080;
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+/* Judul Tabel */
+h2 {
+  text-align: left;
+  color: #004080;
+  margin-top: 10px;
+}
+
+/* Jam */
+#clock {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Tabel umum */
 table {
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
 }
+
 th, td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
 }
+
 th {
   background-color: #87cefa;
-}
-#clock {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 20px;
 }
 
 /* dua tabel bawah bersebelahan */
@@ -26,6 +49,7 @@ th {
   display: flex;
   gap: 20px;
 }
+
 .two-tables > div {
   flex: 1;
 }
@@ -43,6 +67,7 @@ th {
   overflow: hidden;
   z-index: 9999;
   height: 40px; /* tinggi stabil */
+  text-align: left;
 }
 
 /* supaya teks benar-benar jalan */
@@ -51,7 +76,7 @@ th {
   min-width: 100%;
   padding-left: 100%;
   white-space: nowrap;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 15s linear infinite;
 }
 
 @keyframes scroll-left {
