@@ -1,64 +1,69 @@
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=0&single=true&output=csv';
-const BANNER_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=31431312&single=true&output=csv';
-const ANCHORAGE_URL = 'anchorage.csv';
+// konfigurasi URL CSV
+const JADWAL_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=0&single=true&output=csv';     // Jetty, Nama Kapal, ATA, ETD
+const INCOMING_URL = 'incoming.csv'; // Nama Kapal, ETA
+const ANCHORAGE_URL = 'anchorage.csv'; // Nama Kapal, ATA, ETB
+const BANNER_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN5FOSUM77lPnkjReqiyTlM5paNh_VMPu27TuQJxip6n7pD7su15lVqyBqwvJ-TKyp7AXJGuT26l11/pub?gid=31431312&single=true&output=csv';     // Teks banner
 
-async function fetchData() {
-  const response = await fetch(CSV_URL);
-  const data = await response.text();
-  const rows = data.split('\n').slice(1); // skip header
-  const tbody = document.querySelector('#jadwal tbody');
-  tbody.innerHTML = '';
-  rows.forEach(r => {
-    if (r.trim() === '') return;
-    const cols = r.split(',');
-    const tr = document.createElement('tr');
-    cols.forEach(c => {
-      const td = document.createElement('td');
-      td.textContent = c;
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
-  });
+// ubah teks CSV ke array
+function csvToRows(text) {
+  return text.trim().split(/\r?\n/).map(r => r.split(','));
 }
 
-
-// Ambil data kapal sedang Anchorage
-async function fetchAnchorage() {
-  const response = await fetch(ANCHORAGE_URL);
-  const data = await response.text();
-  const rows = data.split('\n').slice(1); // skip header
-  const tbody = document.querySelector('#anchorage tbody');
-  tbody.innerHTML = '';
-  rows.forEach(r => {
-    if (r.trim() === '') return;
-    const cols = r.split(',');
-    const tr = document.createElement('tr');
-    cols.forEach(c => {
-      const td = document.createElement('td');
-      td.textContent = c;
-      tr.appendChild(td);
+// load table umum
+async function loadTable(url, tableSelector, colCount) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const txt = await res.text();
+    const rows = csvToRows(txt).slice(1); // skip header
+    const tbody = document.querySelector(tableSelector + ' tbody');
+    tbody.innerHTML = '';
+    rows.forEach(r => {
+      if (r.join('').trim()==='') return;
+      const tr = document.createElement('tr');
+      for (let i=0; i<colCount; i++) {
+        const td = document.createElement('td');
+        td.textContent = r[i] || '';
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
     });
-    tbody.appendChild(tr);
-  });
+  } catch (err) {
+    console.error('loadTable', tableSelector, err);
+    document.querySelector(tableSelector+' tbody').innerHTML =
+      `<tr><td colspan="${colCount}">Gagal memuat data</td></tr>`;
+  }
 }
 
+// load banner
 async function fetchBanner() {
-  const response = await fetch(BANNER_URL);
-  const data = await response.text();
-  const rows = data.split('\n').slice(1); // skip header
-  const texts = rows.map(r => r.split(',')[0]).filter(t => t.trim() !== '');
-  document.getElementById('banner').innerHTML = texts.join(' • ');
+  const bannerEl = document.getElementById('banner');
+  try {
+    const res = await fetch(BANNER_URL);
+    if (!res.ok) throw new Error(res.status);
+    const txt = await res.text();
+    const rows = csvToRows(txt).slice(1);
+    const texts = rows.map(r => (r[0]||'').trim()).filter(Boolean);
+    const content = texts.join(' • ') || '— Tidak ada info banner —';
+    bannerEl.innerHTML = `<span>${content}</span>`;
+  } catch(e) {
+    console.error(e);
+    bannerEl.innerHTML='<span>Gagal memuat banner</span>';
+  }
 }
 
-function updateClock() {
-  const now = new Date();
-  document.getElementById('clock').textContent = now.toLocaleString();
+// jam digital
+function updateClock(){
+  document.getElementById('clock').textContent = new Date().toLocaleString();
 }
+setInterval(updateClock,1000);updateClock();
 
-setInterval(updateClock, 1000);
-updateClock();
-
-fetchData();
-fetchBanner();
-setInterval(fetchData, 10000);
-setInterval(fetchBanner, 10000);
+// load semua
+function loadAll(){
+  loadTable(JADWAL_URL,'#jadwal',4);
+  loadTable(INCOMING_URL,'#incoming',2);
+  loadTable(ANCHORAGE_URL,'#anchorage',3);
+  fetchBanner();
+}
+loadAll();
+setInterval(loadAll,60000);
