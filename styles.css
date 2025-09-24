@@ -4,30 +4,15 @@ body {
   margin: 20px;
 }
 
-/* Container header untuk judul + logo */
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* agar judul tetap di tengah */
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.header-container h1 {
+/* Judul Utama */
+h1 {
+  text-align: center;
   color: #004080;
+  margin-bottom: 10px;
   font-size: 2em;
-  margin: 0;
 }
 
-.logo-pertamina {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: auto;
-  width: 5px; /* ukuran kecil */
-}
-
-/* Judul tabel */
+/* Judul Tabel */
 h2 {
   text-align: left;
   color: #004080;
