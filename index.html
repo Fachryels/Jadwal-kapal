@@ -4,85 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Tanker Position Terminal LPG Tanjung Sekong</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    /* Judul Utama */
-    h1 {
-      text-align: center;
-      color: #004080;
-      margin-bottom: 10px;
-      font-size: 2em;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #87cefa;
-    }
-    #clock {
-      font-size: 1.2em;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    /* dua tabel bawah bersebelahan */
-    .two-tables {
-      display: flex;
-      gap: 20px;
-    }
-    .two-tables > div {
-      flex: 1;
-    }
-
-    /* Banner style fixed di bawah */
-    #banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #004080;
-      color: white;
-      padding: 10px 0;
-      font-weight: bold;
-      overflow: hidden;
-      z-index: 9999;
-      height: 40px; /* tinggi stabil */
-    }
-
-    /* supaya teks benar-benar jalan */
-    #banner span {
-      display: inline-block;
-      min-width: 100%;
-      padding-left: 100%;
-      white-space: nowrap;
-      animation: scroll-left 20s linear infinite;
-    }
-
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  </style>
+  <!-- Panggil file CSS eksternal -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Daily Tanker Position Terminal LPG Tanjung Sekong</h1>
+
+  <!-- Header + logo -->
+  <div class="header-container">
+    <h1>Daily Tanker Position Terminal LPG Tanjung Sekong</h1>
+    <img src="logo-pertamina.png" alt="Logo Pertamina" class="logo-pertamina">
+  </div>
+
   <div id="clock"></div>
 
   <h2>Jadwal Kapal di Jetty</h2>
@@ -91,11 +23,13 @@
       <tr>
         <th>Jetty</th>
         <th>Nama Kapal</th>
-        <th>ATA</th> <!-- diganti dari ETA -->
+        <th>ATA</th>
         <th>ETD</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      <!-- Isi lewat app.js -->
+    </tbody>
   </table>
 
   <div class="two-tables">
@@ -108,7 +42,9 @@
             <th>ETA</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <!-- Isi lewat app.js -->
+        </tbody>
       </table>
     </div>
     <div>
@@ -121,7 +57,9 @@
             <th>ETB</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <!-- Isi lewat app.js -->
+        </tbody>
       </table>
     </div>
   </div>
