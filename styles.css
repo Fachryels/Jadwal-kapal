@@ -23,7 +23,8 @@ body {
   position: absolute;
   right: 0;
   top: 0;
-  height: 50px; /* ukuran kecil */
+  height: auto;
+  width: 20px; /* ukuran kecil */
 }
 
 /* Judul tabel */
